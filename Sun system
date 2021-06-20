@@ -1,0 +1,107 @@
+from colorama import Fore
+import time as t
+import os
+import sys
+def login():
+    global c
+    t.sleep(2)
+    print(Fore.RED+'--------------')
+    print(Fore.RED+'1.管理员登录')
+    print(Fore.RED + '2.访客登录')
+    print(Fore.RED + '3.退出系统')
+    login_choice = input("登录模式：")
+    if login_choice == '1':
+        gl_name = input(str('管理员姓名：'))
+        if gl_name == 'Sun':
+            print(Fore.GREEN+'...OK')
+            print(Fore.RED+'------------------------')
+            t.sleep(1)
+            gl_password = input(str('输入四位英文数字混登录密码：'))
+            if gl_password == 'sy19':
+                t.sleep(2)
+                print(Fore.GREEN+'...OK!')
+                c = 1
+            else:
+                print(Fore.GREEN+'密码错误！')
+        else:
+            print(Fore.GREEN+'名称错误！')
+    elif login_choice == '2':
+        t.sleep(2)
+        other_login = input('访客姓名：')
+        if other_login == 'Sun':
+            t.sleep(1)
+            print(Fore.GREEN+'您是管理员...')
+            print(Fore.RED)
+            t.sleep(2)
+            gl_password = input(str('输入四位英文数字混登录密码：'))
+            if gl_password == 'sy19':
+                t.sleep(2)
+                print(Fore.GREEN + '...OK!')
+                c = 1
+            else:
+                print(Fore.LIGHTRED_EX + '密码错误！')
+                sys.exit(0)
+        else:
+            c = 2
+            with open('访客登记表.txt','a') as file:
+                file.write('Name:')
+                file.write(other_login)
+                file.write('    login time: ')
+                file.write(t.strftime('%Y-%m-%d %H:%M:%S'))
+                file.write('\n')
+            t.sleep(1)
+            print(Fore.GREEN+'...OK')
+    elif login_choice == '3':
+        sys.exit(0)
+    else:
+        t.sleep(1.5)
+        print(Fore.LIGHTRED_EX+'只能选择 1 或 2！')
+        sys.exit(0)
+
+
+def welcome_gnu():
+    t.sleep(1)
+    print(Fore.LIGHTGREEN_EX+'-------------------')
+    t.sleep(1)
+    print(Fore.LIGHTGREEN_EX + '***UnixS System***')
+def gl_main():
+    print(Fore.LIGHTGREEN_EX+'-------------------')
+    print(Fore.LIGHTGREEN_EX + '****系统菜单******')
+    print(Fore.LIGHTGREEN_EX + '  1.系统简介')
+    print(Fore.LIGHTGREEN_EX + '  2.浏览器')
+    print(Fore.LIGHTGREEN_EX + '  3.学习python')
+    print(Fore.LIGHTGREEN_EX + '  4.游戏')
+    print(Fore.LIGHTGREEN_EX + '  5.创建文件')
+    print(Fore.LIGHTGREEN_EX + '  6.回收站')
+    print(Fore.LIGHTGREEN_EX + '  7.退出系统')
+    main_choice = input(">>>")
+    if main_choice == '1':
+        pass
+    elif main_choice == '2':
+        pass
+    elif main_choice == '3':
+        pass
+    elif main_choice == '4':
+        pass
+    elif main_choice == '5':
+        pass
+    elif main_choice == '6':
+        pass
+    elif main_choice == '7':
+        t.sleep(1)
+        print(Fore.GREEN+'正在退出...')
+        t.sleep(1.5)
+        sys.exit(0)
+    else:
+        print(Fore.LIGHTRED_EX+'输入错误！')
+login()
+welcome_gnu()
+while True:
+    t.sleep(2)
+    if c == 1:
+        gl_main()
+    else:
+        t.sleep(1)
+        print(Fore.GREEN+'正在进入访客界面...')
+        t.sleep(1)
+        sys.exit(0)
